@@ -1,0 +1,9 @@
+project.ext.sourceCompatability = '17'
+
+subprojects {
+    apply plugin: "java"
+}
+
+repositories {
+    mavenCentral()
+}
