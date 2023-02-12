@@ -8,8 +8,8 @@ Supports [Gradle Incremental annotation processing](https://docs.gradle.org/curr
 Add recordbuilder to your dependencies section in build.gradle 
 
 ```groovy
-implementation 'com.lilbaek.recordbuilder:processor:1.0.0'
-annotationProcessor 'com.lilbaek.recordbuilder:core:1.0.0'
+implementation 'com.lilbaek.recordbuilder:core:1.0.1'
+annotationProcessor 'com.lilbaek.recordbuilder:processor:1.0.1'
 ```
 
 ### Usage
