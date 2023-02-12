@@ -39,14 +39,14 @@ Annotated instance = AnnotatedBuilder.builder()
 
 From existing record (Copies existing values)
 ```java
-final Annotated newInstance = AnnotatedBuilder.builder(instance)
+Annotated newInstance = AnnotatedBuilder.builder(instance)
     .message(Optional.empty())
     .build();
 ```
 
 Using From to change single value
 ```java
-final Annotated newInstance = AnnotatedBuilder.from(instance)
+Annotated newInstance = AnnotatedBuilder.from(instance)
     .withMessage(Optional.empty());
 ```
 
@@ -55,6 +55,7 @@ Default values
 Annotated instance = AnnotatedBuilder.builder()
         .start(2)
         .build();
+
 assertEquals(2, instance.start());
 assertEquals(0, instance.end());
 assertEquals(0, instance.difference());
