@@ -14,10 +14,10 @@ import static com.lilbaek.recordbuilder.ap.internal.builder.parts.NestedClassBui
 
 public class StaticBuilder {
 
-    public static final String FROM_METHOD_NAME = "from";
-    public static final String FROM_WITH_RECORD_NAME = "_With";
-    public static final String COPY_METHOD_NAME = "builder";
-    public static final String BUILDER_METHOD_NAME = "builder";
+    private static final String FROM_METHOD_NAME = "from";
+    private static final String FROM_WITH_RECORD_NAME = "_With";
+    private static final String COPY_METHOD_NAME = "builder";
+    private static final String BUILDER_METHOD_NAME = "builder";
 
     private StaticBuilder() {
     }

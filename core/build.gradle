@@ -1,3 +1,8 @@
+plugins {
+    id 'maven-publish'
+    id 'signing'
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -6,3 +11,83 @@ repositories {
 dependencies {
 
 }
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+publishing {
+    repositories {
+
+        maven {
+            name = "ossrh"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = findProperty('ossrhUsername')
+                password = findProperty('ossrhPassword')
+            }
+        }
+
+        /*
+        // Uncomment this only if your version ends with -SNAPSHOT, you'll get a 400 otherwhise.
+        maven {
+            name = "ossrhSnapshot"
+            url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            credentials {
+                username = findProperty('ossrhUsername')
+                password = findProperty('ossrhPassword')
+            }
+        }*/
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.lilbaek.recordbuilder'
+            artifactId = 'core'
+            version = '1.0.1'
+
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = 'RecordBuilder'
+                packaging = 'jar'
+                description = 'Fast opinionated annotation processor to generate builders for Java records'
+                url = 'https://github.com/lilbaek/recordbuilder'
+
+                scm {
+                    connection = 'scm:git:git:https://github.com/lilbaek/recordbuilder.git'
+                    developerConnection = 'scm:git:ssh:https://github.com/lilbaek/recordbuilder.git'
+                    url = 'https://github.com/lilbaek/recordbuilder'
+                }
+
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/lilbaek/recordbuilder/blob/main/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'lilbaek'
+                        name = 'Morten Pedersen'
+                        email = 'dev@lilbaek.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+

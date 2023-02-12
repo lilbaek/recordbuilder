@@ -1,3 +1,2 @@
 rootProject.name = 'recordbuilder'
-
 include ':core', ':processor', 'test'
