@@ -15,7 +15,7 @@ public class BuilderWriter {
         final var filer = annotationProcessorContext.filer();
         try {
             final var fullyQualifiedName = result.packageName().isEmpty() ? result.builderClassType().name : (result.packageName() + "." + result.builderClassType().name);
-            final var sourceFile = filer.createSourceFile(fullyQualifiedName);
+            final var sourceFile = filer.createSourceFile(fullyQualifiedName, result.record().originalRecordType);
             try (final var writer = sourceFile.openWriter()) {
                 javaFile.writeTo(writer);
             }
