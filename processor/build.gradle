@@ -50,7 +50,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'com.lilbaek.recordbuilder'
             artifactId = 'processor'
-            version = '1.0.1'
+            version = '1.0.3'
 
             from components.java
             artifact sourcesJar
